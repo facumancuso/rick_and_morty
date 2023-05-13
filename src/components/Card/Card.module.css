@@ -1,0 +1,37 @@
+.card {
+  border: 1px solid #f70e0e;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.closeButton {
+  background-color: #fff;
+  color: #ff0000;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  color: #cc0000;
+}
+
+.cardTitle {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color:#f70e0e;
+}
+
+.cardContent {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.cardImage {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin-top: 16px;
+  border-radius: 15px;
+}
