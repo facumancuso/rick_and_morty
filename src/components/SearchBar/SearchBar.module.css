@@ -3,6 +3,7 @@
   align-items: center;
   border-radius: 3px;
   border-color: #007bff;
+  justify-content: center;
 }
 
 .searchInput {
