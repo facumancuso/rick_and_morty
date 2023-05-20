@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Skranji&display=swap');
 .searchBar {
   display: flex;
   align-items: center;
@@ -7,8 +8,13 @@
 }
 
 .searchInput {
+  font-family: 'Skranji';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  background-color: #ffffff81;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #3700ff56;
   border-radius: 4px;
   margin-right: 8px;
   font-size: 14px;
@@ -16,8 +22,12 @@
 }
 
 .searchButton {
+  font-family: 'Skranji';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
   padding: 8px 16px;
-  background-color: #007bff;
+  background-color: #0057b367;
   color: #fff;
   border: none;
   border-radius: 4px;

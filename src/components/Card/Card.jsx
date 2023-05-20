@@ -10,9 +10,7 @@ export default function Card(props) {
 
   return (
     <div className={styles.card}>
-      <button onClick={handleCloseClick} className={styles.closeButton}>
-        X
-      </button>
+      <button onClick={handleCloseClick} className={styles.closeButton}/>
       <h2 className={styles.cardTitle}>Name: {name}</h2>
       <h2 className={styles.cardContent}>Status: {status}</h2>
       <h2 className={styles.cardContent}>Species: {species}</h2>

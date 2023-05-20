@@ -23,6 +23,7 @@ function SearchBar(props) {
       <button onClick={handleButtonClick} className={style.searchButton}>
         Agregar
       </button>
+      
     </div>
   );
 }
