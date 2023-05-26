@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './Card.module.css';
 
 export default function Card(props) {
-  const { name, status, species, gender, origin, image, onClose } = props;
+  const { id, name, status, species, gender, origin, image, onClose } = props;
 
   const handleCloseClick = () => {
-    onClose();
+    onClose(id);
   };
 
   return (
