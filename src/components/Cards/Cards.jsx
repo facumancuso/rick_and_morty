@@ -1,14 +1,17 @@
 import React from 'react';
 import Card from '../Card/Card';
 import styles from './Cards.module.css';
-export default function Cards(props) {
-  const { characters, onClose  } = props;
+export default function Cards({ characters, onClose, randomCharacter }) {
+  const allCharacters = [...characters];
+
+  if (randomCharacter) {
+    allCharacters.push(randomCharacter);
+  }
 
   return (
     <div className={styles.cardContainer}>
-    
-      {characters?.map((character) => (
-        <Card 
+      {allCharacters.map((character) => (
+        <Card
           key={character.id}
           id={character.id}
           name={character.name}

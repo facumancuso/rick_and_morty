@@ -1,32 +1,37 @@
-import { useState } from 'react';
-import style from './SearchBar.module.css';
-
-function SearchBar({onSearch, onAddRandom}) {
-  const [id, setId] = useState('')
+import React, { useState } from "react";
+import style from "./SearchBar.module.css";
+import { Link } from "react-router-dom";
+// import styles from "../Card/Card.module.css";
+// import Cards from "../Cards/Cards";
+// import Card from "../Card/Card";
+function SearchBar({ onSearch, onAddRandom, logout }) {
+  const [id, setId] = useState("");
   const handleChange = (event) => {
-    setId(event.target.value)
+    setId(event.target.value);
   };
-  const [randomCharacter, setRandomCharacter] = useState(null);
-  
-  const handleAddRandom = () => {
-    const randomIndex = Math.floor(Math.random() * 826) + 1;
-    fetch(`https://rickandmortyapi.com/api/character/${randomIndex}`)
-    .then(response => response.json())
-    .then(data => setRandomCharacter(data.name));
-  }
 
   return (
     <div className={style.searchBar}>
       <input
-        type="search" onChange={handleChange}
+        type="search"
+        onChange={handleChange}
         className={style.searchInput}
+        value={id}
       />
-      <button onClick={()=> onSearch(id)} className={style.searchButton}>
-        Agregar
+      <Link to="/home">
+        <button onClick={() => onSearch(id)} className={style.searchButton}>
+          Add
+        </button>
+      </Link>
+      <Link to="/home">
+        <button className={style.searchButton}>Home</button>
+      </Link>
+      <Link to="/about">
+        <button className={style.searchButton}>About</button>
+      </Link>
+      <button className={style.searchButton} onClick={logout}>
+        Log out
       </button>
-      {/* <button onClick={handleAddRandom} className={style.searchButton}>
-        Agregar aleatorio
-      </button> */}
     </div>
   );
 }

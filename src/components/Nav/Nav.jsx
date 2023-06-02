@@ -1,18 +1,14 @@
 import React from "react";
 import SearchBar from '../SearchBar/SearchBar';
+import { Link } from 'react-router-dom'
 
-const Nav = ({onSearch}) => {
-
-    return (
+const Nav = ({ onSearch, logout }) => {
+  return (
     <div>
-<SearchBar onSearch={onSearch} /> 
+      <SearchBar onSearch={onSearch} logout={logout} />
+      
     </div>
-    );
+  );
 }
-
-
-// class Nav extends React.Components {
-
-// }
 
 export default Nav;
