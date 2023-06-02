@@ -22,6 +22,7 @@ const Form = ({ login }) => {
 
   return (
     <div className={styles.form}>
+         <h2 className={styles.title}>Welcome</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email:</label>
         <input type="email" id="email" name="email" value={userData.email} onChange={handleChange} />

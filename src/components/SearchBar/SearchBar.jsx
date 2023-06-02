@@ -29,6 +29,9 @@ function SearchBar({ onSearch, onAddRandom, logout }) {
       <Link to="/about">
         <button className={style.searchButton}>About</button>
       </Link>
+      <Link to="/favorites">
+      <button className={style.searchButton}>Favorites</button>
+    </Link>
       <button className={style.searchButton} onClick={logout}>
         Log out
       </button>
