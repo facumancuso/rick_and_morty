@@ -23,36 +23,36 @@ const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className={`${styles.form} ${styles.background}`}>
-    <div className={styles.formcontainer}>
-      <h2 className={styles.title}>Welcome</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={userData.email}
-          onChange={handleChange}
-        />
-        <label htmlFor="password">Password:</label>
-        <div className={styles.passwordContainer}>
+      <div className={styles.formcontainer}>
+        <h2 className={styles.title}>Welcome</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">Email:</label>
           <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            name="password"
-            value={userData.password}
+            type="email"
+            id="email"
+            name="email"
+            value={userData.email}
             onChange={handleChange}
           />
-        </div>
-        {errors.email && <div className={styles.error}>{errors.email}</div>}
-        {errors.password && (
-          <div className={styles.error}>{errors.password}</div>
-        )}
+          <label htmlFor="password">Password:</label>
+          <div className={styles.passwordContainer}>
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              value={userData.password}
+              onChange={handleChange}
+            />
+          </div>
+          {errors.email && <div className={styles.error}>{errors.email}</div>}
+          {errors.password && (
+            <div className={styles.error}>{errors.password}</div>
+          )}
 
-        <div className={styles.buttonContainer}>
-          <button type="submit">Log in</button>
-        </div>
-      </form>
+          <div className={styles.buttonContainer}>
+            <button type="submit">Log in</button>
+          </div>
+        </form>
       </div>
     </div>
   );

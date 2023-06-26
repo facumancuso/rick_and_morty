@@ -7,8 +7,10 @@ export default function Detail() {
   const [character, setCharacter] = useState({});
   const [loaded, setLoaded] = useState(false);
 
+
   useEffect(() => {
-    axios(`https://rickandmortyapi.com/api/character/${id}`)
+    // axios(`https://rickandmortyapi.com/api/character/${id}`)
+    axios(`http://localhost:3001/rickandmorty/character/${id}`)
       .then(({ data }) => {
         if (data.name) {
           setCharacter(data);
@@ -21,7 +23,7 @@ export default function Detail() {
   }, [id]);
 
   return (
-    <div className={styles.card}>
+    <div class={styles.card}>
   {loaded ? (
     <div>
       <h1 className={styles.cardContent}>{character.name}</h1>
@@ -35,6 +37,7 @@ export default function Detail() {
       ):(
         <p>Loading...</p>
         )}
+        
         </div>
         );
         }
