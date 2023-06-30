@@ -18,7 +18,18 @@ function App() {
   const [showSearchBar, setShowSearchBar] = useState(false); 
   const EMAIL = 'ejemplo@gmail.com';
   const PASSWORD = 'password1';
-
+//! CON EXPRESS
+// const login = (userData) => {
+//   const URL = "http://localhost:3001/rickandmorty/login/";
+//   const { email, password } = userData;
+//   axios(`${URL}?email=${email}&password=${password}`).then(({ data }) => {
+//     const { access } = data;
+//     console.log(access);
+//     setAccess(access);
+//     access && navigate("/home");
+//   });
+// };
+//! SIN EXPRESS
   function login(userData) {
     if (userData.password === PASSWORD && userData.email === EMAIL) {
       setAccess(true);

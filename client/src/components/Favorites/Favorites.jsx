@@ -32,7 +32,7 @@ const Favorites = ({ myFavorites, orderCards, filterCards }) => {
           <option value="Female">Femenino</option>
           <option value="Genderless">Sin género</option>
           <option value="unknown">Desconocido</option>
-          <option value="All">Todos</option> {/* Nueva opción para mostrar todos los personajes */}
+          <option value="All">Todos</option> 
         </select>
         {myFavorites.map((character) => (
           <Card key={character.id} {...character} />
