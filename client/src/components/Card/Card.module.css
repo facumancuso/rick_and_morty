@@ -1,52 +1,107 @@
-@import url('https://fonts.googleapis.com/css2?family=Skranji&display=swap');
-
-
-.card {
-  border-spacing: 10px;
-  border: 3px solid #000000;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: #007c11b4;
-  box-shadow: 0 2px 4px #08770894;
-}
-
-.closeButton {
-border: 1px solid #ffffff;
-width: 20px;
-height: 20px;
-position: relative;
-/* background-image: url('/server/public/Img/close-button-icon-png-16.jpg'); */
-background-size: cover;
+@font-face{
+  font-family: "rick-and-morty";
+  src: url(../Fonts/AmaticSC-Bold.ttf);
 }
 
 
-.cardTitle {
-  font-family: 'Skranji';
-  font-size: 22px;
-  margin-bottom: 8px;
-  color:#000000;
-}
-
-.cardContent {
-  font-family: 'Skranji';
-  font-size: 15px;
-  margin-bottom: 8px;
-  color: #ffffff;
-}
-
-.cardImage {
+.tarjeta{
+  width: 300px;
+  height: 500px;
+  margin-top: 60px;
+  background-image: url(../../assets/Img/tienda-pawn-de-rick-y-morty_3840x2160_xtrafondos.com.jpg);
+  background-size: cover;
+  color:rgb(88 199 250 / 0%);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto;
-  max-width: 200px;
-  max-height: 200px;
-  height: auto;
-  margin-top: 25px;
-  border-radius: 150px;
-  border:3px solid rgb(0, 0, 0);
+  flex-direction: column;
+  box-shadow: 7px 28px 26px 10px rgba(0,0,0,0.84);
+  border-radius: 10px;
+  overflow: hidden;
+  border: solid 7px rgba(8, 229, 163, 0.492); 
+}
+
+.tarjeta:hover
+{
+  color: rgb(88 199 250 / 100%);
+  transition: color 0.5s, transform 0.5s ease;
+  transform: scale(1.05)
+}
+
+.tarjeta button{
+  padding: 4px 8px;
+  background-color:rgb(88 199 250 / 100%);
+  border: none;;
+  font-weight:bold;
+  border-radius: 8px;
+  cursor: pointer;
+  position: absolute;
+  margin-bottom: 465px;
+  margin-left: 265px;
+} 
+
+.tarjeta button:hover{
+  background-color: rgb(193, 241, 116);
+  transition: color 0.5s, transform 0.5s ease;
+  transform: scale(1.05); 
+}
+
+.corazon{
+  position: absolute;
+  margin-right: 510px ;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.corazon:hover{
+  transition: color 0.5s, transform 0.5s ease;    
+}
+
+
+.img{
+  width: 265px;
+  height: 265px;
+  border-radius: 10px;
+  border: solid rgba(74, 76, 95, 0.507);
+  box-shadow: inset 11px -12px 33px 11px rgba(58, 57, 57, 0.377);
+} 
+
+.lista{
+  align-self: flex-start;
+  margin-left: 30px;
+  font-family: "rick-and-morty";
+  font-size: 19px;
+  border-radius: 10px;
+}
+
+.lista :first-child{
+margin-bottom: 20px;
+}
+
+.Navtitle{
+text-decoration: none;
+}
+
+
+.title{
+  align-self: flex-start;
+  margin: 0;
+  font-family: "rick-and-morty";
+  font-size: 1.8rem;
+  color: rgb(88 199 250 / 100%);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.title:hover{
+  color: rgb(193, 241, 116);
+  transition: color 0.5s, transform 0.5s ease;
+  transform: scale(1.05);
+}
+
+
+.lista h3 {
+  margin: 2px;
+  margin-top: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 

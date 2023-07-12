@@ -1,7 +1,30 @@
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-padding-top: 100px;
-background-color: rgba(0, 0, 0, 0);
-overflow: auto; 
-max-height: 500px; 
+
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    min-height: 100vh;
+    width: 100vw;
+    background-image: url(../../assets/Img/back4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: "fuente";
+    color: rgb(88 199 250 / 100%);
+  }
+  
+  .Detail{
+    margin-top: 80px;
+    margin-right: 600px;
+  }
+  
+  .Detail img{
+    box-shadow: -1px 4px 95px 22px rgba(0,0,0,0.72);
+    border-radius: 10px;
+    width: 200px;
+    object-fit: cover;
+  }
+  
+  .description{
+    margin-top: 50px;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
+  }

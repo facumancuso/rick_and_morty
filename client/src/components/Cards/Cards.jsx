@@ -1,28 +1,26 @@
-import React from 'react';
-import Card from '../Card/Card';
-import styles from './Cards.module.css';
-export default function Cards({ characters, onClose, randomCharacter }) {
-  const allCharacters = [...characters];
 
-  if (randomCharacter) {
-    allCharacters.push(randomCharacter);
-  }
+import Card from '../Card/Card'
+import style from "./Cards.module.css"
 
-  return (
-    <div className={styles.cardContainer}>
-      {allCharacters.map((character) => (
-        <Card
-          key={character.id}
-          id={character.id}
-          name={character.name}
-          status={character.status}
-          species={character.species}
-          gender={character.gender}
-          origin={character.origin}
-          image={character.image}
-          onClose={onClose}
-        />
-      ))}
-    </div>
-  );
+const Cards= (props) =>{
+ 
+   return <div className={style.contenedor}>
+      {props.characters.map(card => {
+
+            return (
+            <Card 
+            key={card.id}
+            id={card.id} 
+            name={card.name}
+            status={card.status}
+            species={card.species}
+            gender={card.gender}
+            origin={card.origin.name}
+            image={card.image}
+            onClose={props.onClose}
+            />)
+         })
+      }
+   </div>;
 }
+export default Cards;

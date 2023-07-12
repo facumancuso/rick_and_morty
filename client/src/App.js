@@ -1,103 +1,89 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Nav from './components/Nav/Nav';
+import './App.css';
+import Cards from './components/Cards/Cards.jsx';
+import Nav from './components/Nav/Nav.jsx'
+import {useState, useEffect} from 'react'
+import axios from 'axios'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import About from './components/About/About';
-import Cards from './components/Cards/Cards';
 import Detail from './components/Detail/Detail';
-import Error from './components/Error/Error';
 import Form from './components/Form/Form';
+import store from '../src/redux/store'
+import { Provider } from 'react-redux';
 import Favorites from './components/Favorites/Favorites';
+const URL = 'http://localhost:3001/rickandmorty/login/';
+
+
 function App() {
-  const [characters, setCharacters] = useState([]);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [access, setAccess] = useState(false);
-  const [prevLocation, setPrevLocation] = useState(null);
-  const [showSearchBar, setShowSearchBar] = useState(false); 
-  const EMAIL = 'ejemplo@gmail.com';
-  const PASSWORD = 'password1';
-//! CON EXPRESS
-// const login = (userData) => {
-//   const URL = "http://localhost:3001/rickandmorty/login/";
-//   const { email, password } = userData;
-//   axios(`${URL}?email=${email}&password=${password}`).then(({ data }) => {
-//     const { access } = data;
-//     console.log(access);
-//     setAccess(access);
-//     access && navigate("/home");
-//   });
-// };
-//! SIN EXPRESS
-  function login(userData) {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-      setAccess(true);
-      setShowSearchBar(true);
-      if (prevLocation) {
-        setTimeout(() => {
-          navigate(prevLocation.pathname);
-          setPrevLocation(null);
-        }, 100); 
-      } else {
-        navigate('/home');
+   
+   const Location = useLocation();
+   const navigate = useNavigate();
+   let [characters , setCharacters] = useState([]);
+   let [access , setAccess] = useState(false)
+
+   const login = async (userData)=>{
+
+      try {
+         const { email, password } = userData;
+         const {data} = await axios(URL + `?email=${email}&password=${password}`);
+
+            const { access } = data; 
+            setAccess(data);
+            access && navigate('/home');
+             
+      } catch (error) {
+         alert ('User wrong')
       }
-    }
-  }
+   };
 
-  function logout() {
-    setAccess(false);
-    setShowSearchBar(false); 
-    navigate('/');
-  }
+   useEffect(()=>{
+      !access && navigate('/');
+   },[access]);
 
-  useEffect(() => {
-    if (!access && location.pathname !== '/') {
-      setPrevLocation(location);
-      navigate('/');
-    }
-  }, [access, navigate, location]);
 
-  const onSearch = (id) => {
-    // axios(`https://rickandmortyapi.com/api/character/${id}`)
-    axios(`http://localhost:3001/rickandmorty/character/${id}`)
-      .then(({ data }) => {
-        if (data.name) {
-          if (!characters.some((character) => character.id === data.id)) {
-            setCharacters((oldChars) => [...oldChars, data]);
-          } else {
-            window.alert('¡Este personaje ya está en la lista!');
-          }
-        } else {
-          window.alert('¡No hay personajes con este ID!');
-        }
-      })
-      .catch((error) => {
-        window.alert('¡No hay personajes con este ID!');
-      });
-  };
+   const onSearch = async (id) => {
+      if(characters.length < 5){   
+         try {
+            const {data}=await axios(`http://localhost:3001/rickandmorty/character/${id}`);
 
-  const onClose = (id) => {
-    const filtered = characters.filter((chars) => chars.id !== id);
-    setCharacters(filtered);
-  };
+            if (data.name) setCharacters((oldChars) => [...oldChars, data]);
+            
+         } catch (error) {
+            alert ('Character not Found by ID, only character with id: 1 to id: 826');
+         }   
+      }else{
+         alert ('No Puedes agregar mas de 5 cartas')
+       }  
+   };
+           
 
-  return (
-  <div className='App'>
-    {access && showSearchBar && <Nav onSearch={onSearch} logout={logout} />}
-    <Routes>
-      <Route path='/' element={<Form login={login} />} />
-      {access && (
-        <>
-          <Route path="/favorites" element={<Favorites />} /> 
-          <Route path='/about' element={<About />} />
-          <Route path='/detail/:id' element={<Detail />} />
-          <Route path='/home' element={<Cards characters={characters} onClose={onClose} />} />
-        </>
-      )}
-      <Route path='*' element={<Error />} />
-    </Routes>
-  </div>
-);
+     const onClose = (id)=>{
+         let filterCharacter = characters.filter(pj => pj.id !== id)
+      
+         setCharacters(filterCharacter);
+     };
+
+   
+
+
+   return (
+      <Provider store={store}>
+      <div className={`App ${Location.pathname !== "/" ? 'home' : ''}`}>
+         
+      {Location.pathname !== '/' ? <Nav onSearch={onSearch} access={access} setAccess={setAccess}/> : null}
+          <Routes>
+            <Route path='/' element ={<Form login={login}/>}/>
+            <Route path='/home' element ={<Cards characters={characters} onClose={onClose} />}/>
+            <Route path='/about' element ={<About/>}/>
+            <Route path='/detail/:id' element={<Detail/>}/>
+            <Route path='/favorites' element={<Favorites/>}/>
+         </Routes>
+      </div>
+      </Provider>
+      
+   );
+   
 }
+
 export default App;
+
+

@@ -1,5 +1,23 @@
-/* .App {
-   background-size: cover;
-   background-position: center;
-   background-image: url('../public/Img/backgroundultimate.jpg');
-} */
+
+
+.App {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   min-height: 100vh;
+   background-image: url('./assets/Img/rick-y-morty-en-el-espacio_3840x2160_xtrafondos.com.jpg');
+   background-size:cover;
+   background-repeat: no-repeat; 
+}
+
+
+.App.home{
+   background-color: rgba(25, 142, 225, 0.724);
+   justify-content: flex-start;
+   background-image: none;
+   overflow: hidden;
+}

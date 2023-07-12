@@ -1,61 +1,50 @@
-import React, { useState } from "react";
-import { validateForm } from "./validation";
-import styles from "./Form.module.css";
+import Style from "./Form.module.css"
+import { useState } from "react";
+import validation from '../validation'
 
-const Form = ({ login }) => {
-  const [userData, setUserData] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState({});
-const [showPassword, setShowPassword] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevState) => ({ ...prevState, [name]: value }));
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = validateForm(userData);
-    setErrors(newErrors);
-    if (Object.keys(newErrors).length === 0) {
-      login(userData);
-    }
-  };
+const Form = (({login}) =>{
 
-  return (
-    <div className={`${styles.form} ${styles.background}`}>
-      <div className={styles.formcontainer}>
-        <h2 className={styles.title}>Welcome</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={userData.email}
-            onChange={handleChange}
-          />
-          <label htmlFor="password">Password:</label>
-          <div className={styles.passwordContainer}>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              name="password"
-              value={userData.password}
-              onChange={handleChange}
-            />
-          </div>
-          {errors.email && <div className={styles.error}>{errors.email}</div>}
-          {errors.password && (
-            <div className={styles.error}>{errors.password}</div>
-          )}
+    let [userData, setUserData] = useState ({email:'',password:''});
+    let [errors, setErrors] = useState({});
 
-          <div className={styles.buttonContainer}>
-            <button type="submit">Log in</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
+   const handleChange = (event) =>{
+    setUserData ({...userData, [event.target.name] : event.target.value});
 
-export default Form;
+    setErrors (validation({...userData , [event.target.name] : event.target.value}))
+   }
+
+   const handleSubmit = (event)=>{
+   event.preventDefault();
+   login(userData);
+   }
+ 
+
+
+    return(
+
+        <div>
+
+            <form action="email" onSubmit={handleSubmit}>
+
+                <label htmlFor="email">Email:</label>
+                <input type="email" className={Style.email} name="email" value={userData.email} onChange={handleChange} placeholder="Enter your email..."/>
+
+                {errors.email && <p className={Style.pUno}>{errors.email}</p>}
+
+                <label htmlFor="password">Password:</label>
+                <input type="password" className={Style.password} name="password" value={userData.password} onChange={handleChange} placeholder="Password"/>
+
+                {errors.password && <p className={Style.pDos}>{errors.password}</p>}
+
+                <button type="submit" className={Style.submit} disabled={!userData.email || !userData.password}>Submit</button>
+
+            </form>
+
+        </div>
+    )
+});
+
+export default Form
+

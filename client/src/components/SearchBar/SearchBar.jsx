@@ -1,42 +1,30 @@
-import React, { useState } from "react";
-import style from "./SearchBar.module.css";
-import { Link } from "react-router-dom";
-// import styles from "../Card/Card.module.css";
-// import Cards from "../Cards/Cards";
-// import Card from "../Card/Card";
-function SearchBar({ onSearch, onAddRandom, logout }) {
-  const [id, setId] = useState("");
-  const handleChange = (event) => {
-    setId(event.target.value);
-  };
+import { useState } from 'react';
+import style from './SearchBar.module.css'
 
-  return (
-    <div className={style.searchBar}>
-      <input
-        type="search"
-        onChange={handleChange}
-        className={style.searchInput}
-        value={id}
-      />
-      <Link to="/home">
-        <button onClick={() => onSearch(id)} className={style.searchButton}>
-          Add
-        </button>
-      </Link>
-      <Link to="/home">
-        <button className={style.searchButton}>Home</button>
-      </Link>
-      <Link to="/about">
-        <button className={style.searchButton}>About</button>
-      </Link>
-      <Link to="/favorites">
-      <button className={style.searchButton}>Favorites</button>
-    </Link>
-      <button className={style.searchButton} onClick={logout}>
-        Log out
-      </button>
-    </div>
-  );
+const SearchBar = ({onSearch})=>{
+
+const [id,setID] = useState('');
+
+const handleChange = (event)=>{
+   // setID(event.target.value)
+   const value = event.target.value;
+  
+ if (!isNaN(value) && value < 827) {
+     setID(event.target.value);}
+  else{ 
+      alert('¡No se pueden ingresar letras y solo Hay 826 Cartas!');
+   }
 }
 
-export default SearchBar;
+// En button al atributo onClick , le asignamos una función , ya que si colocamos solamente onSearch(id) esta se ejecuta sin darle click ya que la estamos invocando (entonces al darle click ejecutamos el callback que tiene)
+   return (
+      <div className={style.input}>
+         
+         <input className={style.animatedInput} type='search' placeholder='Character: 1 - 826' onChange={handleChange} value={id}/>
+         <button className={style.button}  onClick={()=>{onSearch(id); setID("")}}>Search</button>
+      
+      </div>
+   );
+}
+
+export default  SearchBar;
